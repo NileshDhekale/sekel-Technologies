@@ -1,0 +1,59 @@
+a: User should be able to add a list with text, number and special characters
+
+Ans : The text Enter User Name should be displayed by default in the text box. When the user starts entering the name, this text should disappear, is a mandatory field, should be validated. It should not allow any numbers and special characters other than space. 
+  
+	<input type="text name="username" placeholder="Enter User Name pattern="[A-Za-z\s]" required/>
+
+
+b: User should be able to strike throught the list time 
+
+Ans :
+	we can easily do this by using React state. I assume that your items is stored in your component state and in a todo item, you need to store whether it is completed or not ( a boolean value ). 
+
+	const completed = (id) => {
+   /* update the state by changing the completed value of the
+      clicked todo item */
+   this.setState({
+      items : this.state.items.map(item => {
+         if(item.id === id){
+            item.completed = true;
+         }
+         return item;
+      })
+   })
+
+}
+
+<List dense={dense}>
+  {this.state.items
+    .reverse()
+    .map(x => (
+      <ListItem
+        key={x.id}
+        button
+        // add a unique id
+        id={x.id}
+        
+        // add a strike style depending on the completed property of the todo item
+        style={{ textDecoration : x.completed ? 'line-through' : 'none' }} 
+        
+        // call completed with the id
+        onClick={() => completed(x.id)} 
+
+        divider
+      >
+        <ListItemText primary={listItems(x)} />
+        <ListItemSecondaryAction></ListItemSecondaryAction>
+      </ListItem>
+    ))}
+</List> 
+
+
+C: User should be able to create folder for the todo list to be saved in.
+
+Ans: 
+	Yes, users can create folders to organize and save their to-do lists. The ability to create folders is available in many file management systems and productivity tools.
+
+To create a folder for a to-do list, the user can typically navigate to the directory or location where they want the folder to be created. In many applications, this can be done by clicking on a "New Folder" button or selecting "New Folder" from a right-click menu.
+
+Once the folder is created, the user can save their to-do list in the folder by selecting the list and dragging it into the folder or using a "Save As" function to save the list directly to the folder. 
